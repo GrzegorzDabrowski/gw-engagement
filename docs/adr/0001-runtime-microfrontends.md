@@ -1,6 +1,6 @@
 # ADR-0001: Dostarczanie funkcji Engagement jako mikrofrontendów ładowanych w runtime
 
-Status: proponowana (SZKIC – założenia i decyzja do weryfikacji przez autora)
+Status: przyjęta
 Data: 2026-11-11
 
 ## Kontekst
