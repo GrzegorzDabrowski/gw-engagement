@@ -40,6 +40,8 @@ sprawdzić wersję przed udostępnieniem i jak ją wycofać w < 5 min bez hosta 
 - ➕ Każda wersja jest testowalna na prawdziwym hoście przed udostępnieniem.
 - ➕ Kształt `imports` pozwoli później wstrzyknąć manifest jako import map (ADR o zależnościach).
 - ➖ Dodatkowy request (manifest) przed załadowaniem paczki, bez cache w CDN.
+- ➖ Przez CDN manifest zawsze wraca jako pełne 200, nie 304 (zweryfikowane 2026-11-21): nginx
+  z `proxy_cache` usuwa nagłówki warunkowe z requestu do S3. Przy ~200 B akceptujemy to.
 - ➖ Manifest to pojedynczy punkt awarii: gdy padnie, żadna paczka się nie ładuje (fallback z NFR-5).
 - ➖ Dwa równoczesne release'y: wygrywa ostatni zapis (brak blokady). Akceptowalne przy jednym zespole.
 - ➖ Wersję w `package.json` podbija się ręcznie (automatyzacja: ADR o narzędziach monorepo).
