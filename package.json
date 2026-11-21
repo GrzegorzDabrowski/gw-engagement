@@ -5,10 +5,10 @@
   "scripts": {
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
-    "serve": "http-server packages/hello/dist -p 4000 --cors -c-1"
+    "infra:up": "docker compose up -d --wait",
+    "infra:down": "docker compose down"
   },
   "devDependencies": {
-    "http-server": "^14.1.1",
     "typescript": "^5.6.0"
   }
 }
