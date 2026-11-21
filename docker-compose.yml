@@ -1,0 +1,22 @@
+services:
+  localstack:
+    image: localstack/localstack:2026.10.8
+    ports:
+      - "4566:4566" # S3 API, used by dev tooling (deploy script), never by the browser
+    environment:
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:?Set LOCALSTACK_AUTH_TOKEN in gw-engagement/.env (see .env.example)}
+      - SERVICES=s3
+    volumes:
+      # Scripts in ready.d run once LocalStack is ready to accept requests
+      - ./infra/localstack/init/ready.d:/etc/localstack/init/ready.d:ro
+    healthcheck:
+      # Healthy only after init scripts finished (bucket exists).
+      # The image has no curl, but LocalStack itself runs on Python.
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import json,urllib.request as r,sys; sys.exit(0 if json.load(r.urlopen('http://localhost:4566/_localstack/init/ready'))['completed'] else 1)"
+      interval: 2s
+      timeout: 3s
+      retries: 30

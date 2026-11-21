@@ -29,5 +29,7 @@ Schemat wersji, manifest i rollback rozstrzyga ADR-0003.
 - ➕ Model „CI wgrywa niezmienny artefakt, CDN serwuje” odpowiada produkcji (S3 + CloudFront).
 - ➕ Cache jest widoczny i testowalny lokalnie.
 - ➖ Przed pierwszym uruchomieniem trzeba założyć konto LocalStack: świadome odstępstwo od „jednego polecenia”.
-- ➖ Wymagany Docker. Stan LocalStacka może nie przetrwać restartu (do weryfikacji).
+- ➖ Wymagany Docker.
+- ➖ Stan LocalStacka nie przetrwa restartu kontenera (zweryfikowane 2026-11-21): bucket
+  odtwarza skrypt init, ale wersje paczek trzeba wgrać ponownie. Na produkcji historia jest trwała.
 - ➖ nginx to jeden węzeł, więc nie pokazuje propagacji ani unieważniania cache w prawdziwym CDN.
