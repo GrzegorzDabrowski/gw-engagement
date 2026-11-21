@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
+// Replaced at build time by esbuild --define with the version from package.json.
+declare const __PKG_VERSION__: string;
+
 type HelloProps = { name: string };
 
 function Hello({ name }: HelloProps) {
   const [count, setCount] = useState(0);
   return (
     <div style={{ border: "2px dashed teal", padding: 12 }}>
-      <p>Hello, {name}! (from @gw/hello, served by :4000)</p>
+      <p>
+        Hello, {name}! (from @gw/hello v{__PKG_VERSION__})
+      </p>
       <button onClick={() => setCount((c) => c + 1)}>clicked {count}×</button>
     </div>
   );

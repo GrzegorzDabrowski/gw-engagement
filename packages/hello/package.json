@@ -1,10 +1,10 @@
 {
   "name": "@gw/hello",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "esbuild src/index.tsx --bundle --format=esm --jsx=automatic --minify --sourcemap --define:process.env.NODE_ENV=\\\"production\\\" --outfile=dist/hello.js",
+    "build": "esbuild src/index.tsx --bundle --format=esm --jsx=automatic --minify --sourcemap --define:process.env.NODE_ENV=\\\"production\\\" --define:__PKG_VERSION__=\\\"$npm_package_version\\\" --outfile=dist/hello.js",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
